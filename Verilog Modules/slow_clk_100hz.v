@@ -1,4 +1,4 @@
-module slow_clk(
+module slow_clk_100hz(
     input rst,
     input clk_in,
     output reg clk_out

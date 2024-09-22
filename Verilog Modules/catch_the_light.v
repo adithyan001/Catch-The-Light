@@ -123,536 +123,538 @@ module catch_the_light(
 
     always@(posedge clk)
     if(rst)
-        begin
-            current_state <= s0;
-            score <= x0;
-            finished <= 1'b0;
-            led <= 16'h0000;
-        end
-    else if((time_up==1'b1)||(finished==1'b1))
-        begin
-            if(clk_1sec)
-                led <= 16'h0000;
-            else
-                led <= 16'hffff;
-        end
+        current_state <= s0;
+
     else
         current_state <= next_state;
 
 
 
-
     always @ (current_state, switches)
     begin
-        case(current_state)
-            s0:
+        if(rst)
             begin
                 score <= x0;
-                led[2] <= 1'b1;
-                if(switches == led)
-                    next_state <= s1;
-                else
-                    next_state <= s0;
+                finished <= 1'b0;
+                led <= 16'h0000;
             end
-
-            s1:
+        else if((time_up==1'b1)||(finished==1'b1))
             begin
-                score <= x1;
-                led[5] <= 1'b1;
-                if(switches == led)
-                    next_state <= s2;
+                if(clk_1sec)
+                    led <= 16'h0000;
                 else
-                    next_state <= s1;
+                    led <= 16'hffff;
             end
+        else
 
-            s2:
-            begin
-                score <= x2;
-                led[8] <= 1'b1;
-                if(switches == led)
-                    next_state <= s3;
-                else
-                    next_state <= s2;
-            end
+            case(current_state)
+                s0:
+                begin
+                    score <= x0;
+                    led[2] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s1;
+                    else
+                        next_state <= s0;
+                end
 
-            s3:
-            begin
-                score <= x3;
-                led[11] <= 1'b1;
-                if(switches == led)
-                    next_state <= s4;
-                else
-                    next_state <= s3;
-            end
+                s1:
+                begin
+                    score <= x1;
+                    led[5] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s2;
+                    else
+                        next_state <= s1;
+                end
 
-            s4:
-            begin
-                score <= x4;
-                led[1] <= 1'b1;
-                if(switches == led)
-                    next_state <= s5;
-                else
-                    next_state <= s4;
-            end
+                s2:
+                begin
+                    score <= x2;
+                    led[8] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s3;
+                    else
+                        next_state <= s2;
+                end
 
-            s5:
-            begin
-                score <= x5;
-                led[3] <= 1'b1;
-                if(switches == led)
-                    next_state <= s6;
-                else
-                    next_state <= s5;
-            end
+                s3:
+                begin
+                    score <= x3;
+                    led[11] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s4;
+                    else
+                        next_state <= s3;
+                end
 
-            s6:
-            begin
-                score <= x6;
-                led[7] <= 1'b1;
-                if(switches == led)
-                    next_state <= s7;
-                else
-                    next_state <= s6;
-            end
+                s4:
+                begin
+                    score <= x4;
+                    led[1] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s5;
+                    else
+                        next_state <= s4;
+                end
 
-            s7:
-            begin
-                score <= x7;
-                led[9] <= 1'b1;
-                if(switches == led)
-                    next_state <= s8;
-                else
-                    next_state <= s7;
-            end
+                s5:
+                begin
+                    score <= x5;
+                    led[3] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s6;
+                    else
+                        next_state <= s5;
+                end
 
-            s8:
-            begin
-                score <= x8;
-                led[5] <= 1'b0;
-                if(switches == led)
-                    next_state <= s9;
-                else
-                    next_state <= s8;
-            end
+                s6:
+                begin
+                    score <= x6;
+                    led[7] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s7;
+                    else
+                        next_state <= s6;
+                end
 
-            s9:
-            begin
-                score <= x9;
-                led[11] <= 1'b0;
-                if(switches == led)
-                    next_state <= s10;
-                else
-                    next_state <= s9;
-            end
+                s7:
+                begin
+                    score <= x7;
+                    led[9] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s8;
+                    else
+                        next_state <= s7;
+                end
 
-            s10:
-            begin
-                score <= x10;
-                led[1] <= 1'b0;
-                if(switches == led)
-                    next_state <= s11;
-                else
-                    next_state <= s10;
-            end
+                s8:
+                begin
+                    score <= x8;
+                    led[5] <= 1'b0;
+                    if(switches == led)
+                        next_state <= s9;
+                    else
+                        next_state <= s8;
+                end
 
-            s11:
-            begin
-                score <= x11;
-                led[0] <= 1'b1;
-                if(switches == led)
-                    next_state <= s12;
-                else
-                    next_state <= s11;
-            end
+                s9:
+                begin
+                    score <= x9;
+                    led[11] <= 1'b0;
+                    if(switches == led)
+                        next_state <= s10;
+                    else
+                        next_state <= s9;
+                end
 
-            s12:
-            begin
-                score <= x12;
-                led[4] <= 1'b1;
-                if(switches == led)
-                    next_state <= s13;
-                else
-                    next_state <= s12;
-            end
+                s10:
+                begin
+                    score <= x10;
+                    led[1] <= 1'b0;
+                    if(switches == led)
+                        next_state <= s11;
+                    else
+                        next_state <= s10;
+                end
 
-            s13:
-            begin
-                score <= x13;
-                led[13] <= 1'b1;
-                if(switches == led)
-                    next_state <= s14;
-                else
-                    next_state <= s13;
-            end
+                s11:
+                begin
+                    score <= x11;
+                    led[0] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s12;
+                    else
+                        next_state <= s11;
+                end
 
-            s14:
-            begin
-                score <= x14;
-                led[6] <= 1'b1;
-                if(switches == led)
-                    next_state <= s15;
-                else
-                    next_state <= s14;
-            end
+                s12:
+                begin
+                    score <= x12;
+                    led[4] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s13;
+                    else
+                        next_state <= s12;
+                end
 
-            s15:
-            begin
-                score <= x15;
-                led[8] <= 1'b0;
-                if(switches == led)
-                    next_state <= s16;
-                else
-                    next_state <= s15;
-            end
+                s13:
+                begin
+                    score <= x13;
+                    led[13] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s14;
+                    else
+                        next_state <= s13;
+                end
 
-            s16:
-            begin
-                score <= x16;
-                led[10] <= 1'b1;
-                if(switches == led)
-                    next_state <= s17;
-                else
-                    next_state <= s16;
-            end
+                s14:
+                begin
+                    score <= x14;
+                    led[6] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s15;
+                    else
+                        next_state <= s14;
+                end
 
-            s17:
-            begin
-                score <= x17;
-                led[12] <= 1'b1;
-                if(switches == led)
-                    next_state <= s18;
-                else
-                    next_state <= s17;
-            end
+                s15:
+                begin
+                    score <= x15;
+                    led[8] <= 1'b0;
+                    if(switches == led)
+                        next_state <= s16;
+                    else
+                        next_state <= s15;
+                end
 
-            s18:
-            begin
-                score <= x18;
-                led[3] <= 1'b0;
-                if(switches == led)
-                    next_state <= s19;
-                else
-                    next_state <= s18;
-            end
+                s16:
+                begin
+                    score <= x16;
+                    led[10] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s17;
+                    else
+                        next_state <= s16;
+                end
 
-            s19:
-            begin
-                score <= x19;
-                led[15] <= 1'b1;
-                if(switches == led)
-                    next_state <= s20;
-                else
-                    next_state <= s19;
-            end
+                s17:
+                begin
+                    score <= x17;
+                    led[12] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s18;
+                    else
+                        next_state <= s17;
+                end
 
-            s20:
-            begin
-                score <= x20;
-                led[7] <= 1'b0;
-                if(switches == led)
-                    next_state <= s21;
-                else
-                    next_state <= s20;
-            end
+                s18:
+                begin
+                    score <= x18;
+                    led[3] <= 1'b0;
+                    if(switches == led)
+                        next_state <= s19;
+                    else
+                        next_state <= s18;
+                end
 
-            s21: 
-            begin
-                score <= x21;
-                led[14] <= 1'b1;
-                if(switches == led)
-                    next_state <= s22;
-                else
-                    next_state <= s21;
-            end
+                s19:
+                begin
+                    score <= x19;
+                    led[15] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s20;
+                    else
+                        next_state <= s19;
+                end
 
-            s22:
-            begin
-                score <= x22;
-                led[7] <= 1'b1;
-                if(switches == led)
-                    next_state <= s23;
-                else
-                    next_state <= s22;
-            end
+                s20:
+                begin
+                    score <= x20;
+                    led[7] <= 1'b0;
+                    if(switches == led)
+                        next_state <= s21;
+                    else
+                        next_state <= s20;
+                end
 
-            s23:
-            begin
-                score <= x23;
-                led[4] <= 1'b0;
-                if(switches == led)
-                    next_state <= s24;
-                else
-                    next_state <= s23;
-            end
+                s21:
+                begin
+                    score <= x21;
+                    led[14] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s22;
+                    else
+                        next_state <= s21;
+                end
 
-            s24:
-            begin
-                score <= x24;
-                led[14] <= 1'b0;
-                if(switches == led)
-                    next_state <= s25;
-                else
-                    next_state <= s24;
-            end
+                s22:
+                begin
+                    score <= x22;
+                    led[7] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s23;
+                    else
+                        next_state <= s22;
+                end
 
-            s25:
-            begin
-                score <= x25;
-                led[5] <= 1'b1;
-                if(switches == led)
-                    next_state <= s26;
-                else
-                    next_state <= s25;
-            end
+                s23:
+                begin
+                    score <= x23;
+                    led[4] <= 1'b0;
+                    if(switches == led)
+                        next_state <= s24;
+                    else
+                        next_state <= s23;
+                end
 
-            s26:
-            begin
-                score <= x26;
-                led[1] <= 1'b1;
-                if(switches == led)
-                    next_state <= s27;
-                else
-                    next_state <= s26;
-            end
+                s24:
+                begin
+                    score <= x24;
+                    led[14] <= 1'b0;
+                    if(switches == led)
+                        next_state <= s25;
+                    else
+                        next_state <= s24;
+                end
 
-            s27:
-            begin
-                score <= x27;
-                led[0] <= 1'b0;
-                if(switches == led)
-                    next_state <= s28;
-                else
-                    next_state <= s27;
-            end
+                s25:
+                begin
+                    score <= x25;
+                    led[5] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s26;
+                    else
+                        next_state <= s25;
+                end
 
-            s28:
-            begin
-                score <= x28;
-                led[10] <= 1'b0;
-                if(switches == led)
-                    next_state <= s29;
-                else
-                    next_state <= s28;
-            end
+                s26:
+                begin
+                    score <= x26;
+                    led[1] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s27;
+                    else
+                        next_state <= s26;
+                end
 
-            s29:
-            begin
-                score <= x29;
-                led[9] <= 1'b0;
-                if(switches == led)
-                    next_state <= s30;
-                else
-                    next_state <= s29;
-            end
+                s27:
+                begin
+                    score <= x27;
+                    led[0] <= 1'b0;
+                    if(switches == led)
+                        next_state <= s28;
+                    else
+                        next_state <= s27;
+                end
 
-            s30:
-            begin
-                score <= x30;
-                led[3] <= 1'b1;
-                if(switches == led)
-                    next_state <= s31;
-                else
-                    next_state <= s30;
-            end
+                s28:
+                begin
+                    score <= x28;
+                    led[10] <= 1'b0;
+                    if(switches == led)
+                        next_state <= s29;
+                    else
+                        next_state <= s28;
+                end
 
-            s31:
-            begin
-                score <= x31;
-                led[1] <= 1'b0;
-                if(switches == led)
-                    next_state <= s32;
-                else
-                    next_state <= s31;
-            end
+                s29:
+                begin
+                    score <= x29;
+                    led[9] <= 1'b0;
+                    if(switches == led)
+                        next_state <= s30;
+                    else
+                        next_state <= s29;
+                end
 
-            s32:
-            begin
-                score <= x32;
-                led[15] <= 1'b0;
-                if(switches == led)
-                    next_state <= s33;
-                else
-                    next_state <= s32;
-            end
+                s30:
+                begin
+                    score <= x30;
+                    led[3] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s31;
+                    else
+                        next_state <= s30;
+                end
 
-            s33:
-            begin
-                score <= x33;
-                led[14] <= 1'b1;
-                if(switches == led)
-                    next_state <= s34;
-                else
-                    next_state <= s33;
-            end
+                s31:
+                begin
+                    score <= x31;
+                    led[1] <= 1'b0;
+                    if(switches == led)
+                        next_state <= s32;
+                    else
+                        next_state <= s31;
+                end
 
-            s34:
-            begin
-                score <= x34;
-                led[8] <= 1'b1;
-                if(switches == led)
-                    next_state <= s35;
-                else
-                    next_state <= s34;
-            end
+                s32:
+                begin
+                    score <= x32;
+                    led[15] <= 1'b0;
+                    if(switches == led)
+                        next_state <= s33;
+                    else
+                        next_state <= s32;
+                end
 
-            s35:
-            begin
-                score <= x35;
-                led[2] <= 1'b0;
-                if(switches == led)
-                    next_state <= s36;
-                else
-                    next_state <= s35;
-            end
+                s33:
+                begin
+                    score <= x33;
+                    led[14] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s34;
+                    else
+                        next_state <= s33;
+                end
 
-            s36:
-            begin
-                score <= x36;
-                led[6] <= 1'b0;
-                if(switches == led)
-                    next_state <= s37;
-                else
-                    next_state <= s36;
-            end
+                s34:
+                begin
+                    score <= x34;
+                    led[8] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s35;
+                    else
+                        next_state <= s34;
+                end
 
-            s37:
-            begin
-                score <= x37;
-                led[0] <= 1'b1;
-                if(switches == led)
-                    next_state <= s38;
-                else
-                    next_state <= s37;
-            end
+                s35:
+                begin
+                    score <= x35;
+                    led[2] <= 1'b0;
+                    if(switches == led)
+                        next_state <= s36;
+                    else
+                        next_state <= s35;
+                end
 
-            s38:
-            begin
-                score <= x38;
-                led[15] <= 1'b1;
-                if(switches == led)
-                    next_state <= s39;
-                else
-                    next_state <= s38;
-            end
+                s36:
+                begin
+                    score <= x36;
+                    led[6] <= 1'b0;
+                    if(switches == led)
+                        next_state <= s37;
+                    else
+                        next_state <= s36;
+                end
 
-            s39:
-            begin
-                score <= x39;
-                led[1] <= 1'b1;
-                if(switches == led)
-                    next_state <= s40;
-                else
-                    next_state <= s39;
-            end
+                s37:
+                begin
+                    score <= x37;
+                    led[0] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s38;
+                    else
+                        next_state <= s37;
+                end
 
-            s40:
-            begin
-                score <= x40;
-                led[14] <= 1'b0;
-                if(switches == led)
-                    next_state <= s41;
-                else
-                    next_state <= s40;
-            end
+                s38:
+                begin
+                    score <= x38;
+                    led[15] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s39;
+                    else
+                        next_state <= s38;
+                end
 
-            s41:
-            begin
-                score <= x41;
-                led[2] <= 1'b1;
-                if(switches == led)
-                    next_state <= s42;
-                else
-                    next_state <= s41;
-            end
+                s39:
+                begin
+                    score <= x39;
+                    led[1] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s40;
+                    else
+                        next_state <= s39;
+                end
 
-            s42:
-            begin
-                score <= x42;
-                led[6] <= 1'b1;
-                if(switches == led)
-                    next_state <= s43;
-                else
-                    next_state <= s42;
-            end
+                s40:
+                begin
+                    score <= x40;
+                    led[14] <= 1'b0;
+                    if(switches == led)
+                        next_state <= s41;
+                    else
+                        next_state <= s40;
+                end
 
-            s43:
-            begin
-                score <= x43;
-                led[5] <= 1'b0;
-                if(switches == led)
-                    next_state <= s44;
-                else
-                    next_state <= s43;
-            end
+                s41:
+                begin
+                    score <= x41;
+                    led[2] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s42;
+                    else
+                        next_state <= s41;
+                end
 
-            s44:
-            begin
-                score <= x44;
-                led[3] <= 1'b0;
-                if(switches == led)
-                    next_state <= s45;
-                else
-                    next_state <= s44;
-            end
+                s42:
+                begin
+                    score <= x42;
+                    led[6] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s43;
+                    else
+                        next_state <= s42;
+                end
 
-            s45:
-            begin
-                score <= x45;
-                led[7] <= 1'b0;
-                if(switches == led)
-                    next_state <= s46;
-                else
-                    next_state <= s45;
-            end
+                s43:
+                begin
+                    score <= x43;
+                    led[5] <= 1'b0;
+                    if(switches == led)
+                        next_state <= s44;
+                    else
+                        next_state <= s43;
+                end
 
-            s46:
-            begin
-                score <= x46;
-                led[9] <= 1'b1;
-                if(switches == led)
-                    next_state <= s47;
-                else
-                    next_state <= s46;
-            end
+                s44:
+                begin
+                    score <= x44;
+                    led[3] <= 1'b0;
+                    if(switches == led)
+                        next_state <= s45;
+                    else
+                        next_state <= s44;
+                end
 
-            s47:
-            begin
-                score <= x47;
-                led[11] <= 1'b1;
-                if(switches == led)
-                    next_state <= s48;
-                else
-                    next_state <= s47;
-            end
+                s45:
+                begin
+                    score <= x45;
+                    led[7] <= 1'b0;
+                    if(switches == led)
+                        next_state <= s46;
+                    else
+                        next_state <= s45;
+                end
 
-            s48:
-            begin
-                score <= x48;
-                led[13] <= 1'b0;
-                if(switches == led)
-                    next_state <= s49;
-                else
-                    next_state <= s48;
-            end
+                s46:
+                begin
+                    score <= x46;
+                    led[9] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s47;
+                    else
+                        next_state <= s46;
+                end
 
-            s49:
-            begin
-                score <= x49;
-                led[6] <= 1'b0;
-                if(switches == led)
-                    next_state <= s50;
-                else
-                    next_state <= s49;
-            end
+                s47:
+                begin
+                    score <= x47;
+                    led[11] <= 1'b1;
+                    if(switches == led)
+                        next_state <= s48;
+                    else
+                        next_state <= s47;
+                end
 
-            s50:
-            begin
-                score <= x50;
-                finished <= 1'b1;
+                s48:
+                begin
+                    score <= x48;
+                    led[13] <= 1'b0;
+                    if(switches == led)
+                        next_state <= s49;
+                    else
+                        next_state <= s48;
+                end
 
-            end
-        endcase
+                s49:
+                begin
+                    score <= x49;
+                    led[6] <= 1'b0;
+                    if(switches == led)
+                        next_state <= s50;
+                    else
+                        next_state <= s49;
+                end
 
+                s50:
+                begin
+                    score <= x50;
+                    finished <= 1'b1;
+
+                end
+            endcase
 
     end
 
