@@ -43,7 +43,7 @@ This module is responsible for controlling the entire game. It randomly turns th
 This module converts the binary input to its corresponding BCD (Binary-Coded Decimal) value. It is implemented based on the Shift-Add-3 algorithm.
 
 ### 6. 2-bit counter
-It is a 2-# bit free-running up counter. The output count of this counter is used to select the BCD value to be displayed as well as the specific 7-segment display on which the value will be shown.
+It is a 2-bit free-running up counter. The output count of this counter is used to select the BCD value to be displayed as well as the specific 7-segment display on which the value will be shown.
 
 ### 7. Decoder
 The decoder is used to select the 7-segment display that is to be enabled based on the output from the counter. It asserts a low signal to the display that is to be enabled and a high signal to all others.
