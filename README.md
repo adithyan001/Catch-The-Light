@@ -37,13 +37,13 @@ This module takes the 100 MHz system clock and generates a 1 Hz clock.
 This module counts down from 20 seconds and provides a signal when the count reaches zero. The count resets back to 20 seconds when the reset signal is asserted.
 
 ### 4. Catch the light (controller)
-This module is responsible for controlling the entire game. It randomly turns the LEDs on or off, checks whether the switches match the LED patterns and increments the score if a match is found.
+This module is responsible for controlling the entire game. It randomly turns the LEDs on or off, checks whether the switches match the LED patterns, and increments the score if a match is found. It is implemented as a finite state machine (FSM), where, upon detecting a match, the state updates. In each state, the score is incremented, and a random LED is turned on or off.
 
 ### 5. Binary to BCD
 This module converts the binary input to its corresponding BCD (Binary-Coded Decimal) value. It is implemented based on the Shift-Add-3 algorithm.
 
 ### 6. 2-bit counter
-It is a 2-# bit free-running up counter. The output count of this counter is used to select the BCD value to be displayed as well as the specific 7-segment display on which the value will be shown.
+It is a 2-bit free-running up counter. The output count of this counter is used to select the BCD value to be displayed as well as the specific 7-segment display on which the value will be shown.
 
 ### 7. Decoder
 The decoder is used to select the 7-segment display that is to be enabled based on the output from the counter. It asserts a low signal to the display that is to be enabled and a high signal to all others.
