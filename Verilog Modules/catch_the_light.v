@@ -146,13 +146,12 @@ module catch_the_light(
                     led <= 16'hffff;
             end
         else
-
             case(current_state)
                 s0:
                 begin
                     score <= x0;
-                    led[2] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b0000_0000_0000_0100 ;
+                    if( !(switches^led) )
                         next_state <= s1;
                     else
                         next_state <= s0;
@@ -161,8 +160,8 @@ module catch_the_light(
                 s1:
                 begin
                     score <= x1;
-                    led[5] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b0000_0000_0010_0100 ;
+                    if( !(switches^led) )
                         next_state <= s2;
                     else
                         next_state <= s1;
@@ -171,8 +170,8 @@ module catch_the_light(
                 s2:
                 begin
                     score <= x2;
-                    led[8] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b0000_0001_0010_0100 ;
+                    if( !(switches^led) )
                         next_state <= s3;
                     else
                         next_state <= s2;
@@ -181,8 +180,8 @@ module catch_the_light(
                 s3:
                 begin
                     score <= x3;
-                    led[11] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b0000_1001_0010_0100 ;
+                    if( !(switches^led) )
                         next_state <= s4;
                     else
                         next_state <= s3;
@@ -191,8 +190,8 @@ module catch_the_light(
                 s4:
                 begin
                     score <= x4;
-                    led[1] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b0000_1001_0010_0110 ;
+                    if( !(switches^led) )
                         next_state <= s5;
                     else
                         next_state <= s4;
@@ -201,8 +200,8 @@ module catch_the_light(
                 s5:
                 begin
                     score <= x5;
-                    led[3] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b0000_1001_0010_1110 ;
+                    if( !(switches^led) )
                         next_state <= s6;
                     else
                         next_state <= s5;
@@ -211,8 +210,8 @@ module catch_the_light(
                 s6:
                 begin
                     score <= x6;
-                    led[7] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b0000_1001_1010_1110 ;
+                    if( !(switches^led) )
                         next_state <= s7;
                     else
                         next_state <= s6;
@@ -221,8 +220,8 @@ module catch_the_light(
                 s7:
                 begin
                     score <= x7;
-                    led[9] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b0000_1011_1010_1110 ;
+                    if( !(switches^led) )
                         next_state <= s8;
                     else
                         next_state <= s7;
@@ -231,8 +230,8 @@ module catch_the_light(
                 s8:
                 begin
                     score <= x8;
-                    led[5] <= 1'b0;
-                    if(switches == led)
+                    led <= 16'b0000_1011_1000_1110 ;
+                    if( !(switches^led) )
                         next_state <= s9;
                     else
                         next_state <= s8;
@@ -241,8 +240,8 @@ module catch_the_light(
                 s9:
                 begin
                     score <= x9;
-                    led[11] <= 1'b0;
-                    if(switches == led)
+                    led <= 16'b0000_0011_1000_1110 ;
+                    if( !(switches^led) )
                         next_state <= s10;
                     else
                         next_state <= s9;
@@ -251,8 +250,8 @@ module catch_the_light(
                 s10:
                 begin
                     score <= x10;
-                    led[1] <= 1'b0;
-                    if(switches == led)
+                    led <= 16'b0000_0011_1000_1100 ;
+                    if( !(switches^led) )
                         next_state <= s11;
                     else
                         next_state <= s10;
@@ -261,8 +260,8 @@ module catch_the_light(
                 s11:
                 begin
                     score <= x11;
-                    led[0] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b0000_0011_1000_1101 ;
+                    if( !(switches^led) )
                         next_state <= s12;
                     else
                         next_state <= s11;
@@ -271,8 +270,8 @@ module catch_the_light(
                 s12:
                 begin
                     score <= x12;
-                    led[4] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b0000_0011_1001_1101 ;
+                    if( !(switches^led) )
                         next_state <= s13;
                     else
                         next_state <= s12;
@@ -281,8 +280,8 @@ module catch_the_light(
                 s13:
                 begin
                     score <= x13;
-                    led[13] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b0010_0011_1001_1101 ;
+                    if( !(switches^led) )
                         next_state <= s14;
                     else
                         next_state <= s13;
@@ -291,8 +290,8 @@ module catch_the_light(
                 s14:
                 begin
                     score <= x14;
-                    led[6] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b0010_0011_1101_1101 ;
+                    if( !(switches^led) )
                         next_state <= s15;
                     else
                         next_state <= s14;
@@ -301,8 +300,8 @@ module catch_the_light(
                 s15:
                 begin
                     score <= x15;
-                    led[8] <= 1'b0;
-                    if(switches == led)
+                    led <= 16'b0010_0010_1101_1101 ;
+                    if( !(switches^led) )
                         next_state <= s16;
                     else
                         next_state <= s15;
@@ -311,8 +310,8 @@ module catch_the_light(
                 s16:
                 begin
                     score <= x16;
-                    led[10] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b0010_0110_1101_1101 ;
+                    if( !(switches^led) )
                         next_state <= s17;
                     else
                         next_state <= s16;
@@ -321,8 +320,8 @@ module catch_the_light(
                 s17:
                 begin
                     score <= x17;
-                    led[12] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b0011_0110_1101_1101 ;
+                    if( !(switches^led) )
                         next_state <= s18;
                     else
                         next_state <= s17;
@@ -331,8 +330,8 @@ module catch_the_light(
                 s18:
                 begin
                     score <= x18;
-                    led[3] <= 1'b0;
-                    if(switches == led)
+                    led <= 16'b0011_0110_1101_0101 ;
+                    if( !(switches^led) )
                         next_state <= s19;
                     else
                         next_state <= s18;
@@ -341,8 +340,8 @@ module catch_the_light(
                 s19:
                 begin
                     score <= x19;
-                    led[15] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b1011_0110_1101_0101 ;
+                    if( !(switches^led) )
                         next_state <= s20;
                     else
                         next_state <= s19;
@@ -351,8 +350,8 @@ module catch_the_light(
                 s20:
                 begin
                     score <= x20;
-                    led[7] <= 1'b0;
-                    if(switches == led)
+                    led <= 16'b1011_0110_0101_0101 ;
+                    if( !(switches^led) )
                         next_state <= s21;
                     else
                         next_state <= s20;
@@ -361,8 +360,8 @@ module catch_the_light(
                 s21:
                 begin
                     score <= x21;
-                    led[14] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b1111_0110_0101_0101 ;
+                    if( !(switches^led) )
                         next_state <= s22;
                     else
                         next_state <= s21;
@@ -371,8 +370,8 @@ module catch_the_light(
                 s22:
                 begin
                     score <= x22;
-                    led[7] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b1111_0110_1101_0101 ;
+                    if( !(switches^led) )
                         next_state <= s23;
                     else
                         next_state <= s22;
@@ -381,8 +380,8 @@ module catch_the_light(
                 s23:
                 begin
                     score <= x23;
-                    led[4] <= 1'b0;
-                    if(switches == led)
+                    led <= 16'b1111_0110_1100_0101 ;
+                    if( !(switches^led) )
                         next_state <= s24;
                     else
                         next_state <= s23;
@@ -391,8 +390,8 @@ module catch_the_light(
                 s24:
                 begin
                     score <= x24;
-                    led[14] <= 1'b0;
-                    if(switches == led)
+                    led <= 16'b1011_0110_1100_0101 ;
+                    if( !(switches^led) )
                         next_state <= s25;
                     else
                         next_state <= s24;
@@ -401,8 +400,8 @@ module catch_the_light(
                 s25:
                 begin
                     score <= x25;
-                    led[5] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b1011_0110_1110_0101 ;
+                    if( !(switches^led) )
                         next_state <= s26;
                     else
                         next_state <= s25;
@@ -411,8 +410,8 @@ module catch_the_light(
                 s26:
                 begin
                     score <= x26;
-                    led[1] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b1011_0110_1110_0111 ;
+                    if( !(switches^led) )
                         next_state <= s27;
                     else
                         next_state <= s26;
@@ -421,8 +420,8 @@ module catch_the_light(
                 s27:
                 begin
                     score <= x27;
-                    led[0] <= 1'b0;
-                    if(switches == led)
+                    led <= 16'b1011_0110_1110_0110 ;
+                    if( !(switches^led) )
                         next_state <= s28;
                     else
                         next_state <= s27;
@@ -431,8 +430,8 @@ module catch_the_light(
                 s28:
                 begin
                     score <= x28;
-                    led[10] <= 1'b0;
-                    if(switches == led)
+                    led <= 16'b1011_0010_1110_0110 ;
+                    if( !(switches^led) )
                         next_state <= s29;
                     else
                         next_state <= s28;
@@ -441,8 +440,8 @@ module catch_the_light(
                 s29:
                 begin
                     score <= x29;
-                    led[9] <= 1'b0;
-                    if(switches == led)
+                    led <= 16'b1011_0000_1110_0110 ;
+                    if( !(switches^led) )
                         next_state <= s30;
                     else
                         next_state <= s29;
@@ -451,8 +450,8 @@ module catch_the_light(
                 s30:
                 begin
                     score <= x30;
-                    led[3] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b1011_0000_1110_1110 ;
+                    if( !(switches^led) )
                         next_state <= s31;
                     else
                         next_state <= s30;
@@ -461,8 +460,8 @@ module catch_the_light(
                 s31:
                 begin
                     score <= x31;
-                    led[1] <= 1'b0;
-                    if(switches == led)
+                    led <= 16'b1011_0000_1110_1100 ;
+                    if( !(switches^led) )
                         next_state <= s32;
                     else
                         next_state <= s31;
@@ -471,8 +470,8 @@ module catch_the_light(
                 s32:
                 begin
                     score <= x32;
-                    led[15] <= 1'b0;
-                    if(switches == led)
+                    led <= 16'b0011_0000_1110_1100 ;
+                    if( !(switches^led) )
                         next_state <= s33;
                     else
                         next_state <= s32;
@@ -481,8 +480,8 @@ module catch_the_light(
                 s33:
                 begin
                     score <= x33;
-                    led[14] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b0111_0000_1110_1100 ;
+                    if( !(switches^led) )
                         next_state <= s34;
                     else
                         next_state <= s33;
@@ -491,8 +490,8 @@ module catch_the_light(
                 s34:
                 begin
                     score <= x34;
-                    led[8] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b0111_0001_1110_1100 ;
+                    if( !(switches^led) )
                         next_state <= s35;
                     else
                         next_state <= s34;
@@ -501,8 +500,8 @@ module catch_the_light(
                 s35:
                 begin
                     score <= x35;
-                    led[2] <= 1'b0;
-                    if(switches == led)
+                    led <= 16'b0111_0001_1110_1000 ;
+                    if( !(switches^led) )
                         next_state <= s36;
                     else
                         next_state <= s35;
@@ -511,8 +510,8 @@ module catch_the_light(
                 s36:
                 begin
                     score <= x36;
-                    led[6] <= 1'b0;
-                    if(switches == led)
+                    led <= 16'b0111_0001_1010_1000 ;
+                    if( !(switches^led) )
                         next_state <= s37;
                     else
                         next_state <= s36;
@@ -521,8 +520,8 @@ module catch_the_light(
                 s37:
                 begin
                     score <= x37;
-                    led[0] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b0111_0001_1010_1001 ;
+                    if( !(switches^led) )
                         next_state <= s38;
                     else
                         next_state <= s37;
@@ -531,8 +530,8 @@ module catch_the_light(
                 s38:
                 begin
                     score <= x38;
-                    led[15] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b1111_0001_1010_1001 ;
+                    if( !(switches^led) )
                         next_state <= s39;
                     else
                         next_state <= s38;
@@ -541,8 +540,8 @@ module catch_the_light(
                 s39:
                 begin
                     score <= x39;
-                    led[1] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b1111_0001_1010_1011 ;
+                    if( !(switches^led) )
                         next_state <= s40;
                     else
                         next_state <= s39;
@@ -551,8 +550,8 @@ module catch_the_light(
                 s40:
                 begin
                     score <= x40;
-                    led[14] <= 1'b0;
-                    if(switches == led)
+                    led <= 16'b1011_0001_1010_1011 ;
+                    if( !(switches^led) )
                         next_state <= s41;
                     else
                         next_state <= s40;
@@ -561,8 +560,8 @@ module catch_the_light(
                 s41:
                 begin
                     score <= x41;
-                    led[2] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b1011_0001_1010_1111 ;
+                    if( !(switches^led) )
                         next_state <= s42;
                     else
                         next_state <= s41;
@@ -571,8 +570,8 @@ module catch_the_light(
                 s42:
                 begin
                     score <= x42;
-                    led[6] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b1011_0001_1110_1111 ;
+                    if( !(switches^led) )
                         next_state <= s43;
                     else
                         next_state <= s42;
@@ -581,8 +580,8 @@ module catch_the_light(
                 s43:
                 begin
                     score <= x43;
-                    led[5] <= 1'b0;
-                    if(switches == led)
+                    led <= 16'b1011_0001_1100_1111 ;
+                    if( !(switches^led) )
                         next_state <= s44;
                     else
                         next_state <= s43;
@@ -591,8 +590,8 @@ module catch_the_light(
                 s44:
                 begin
                     score <= x44;
-                    led[3] <= 1'b0;
-                    if(switches == led)
+                    led <= 16'b1011_0001_1100_0111 ;
+                    if( !(switches^led) )
                         next_state <= s45;
                     else
                         next_state <= s44;
@@ -601,8 +600,8 @@ module catch_the_light(
                 s45:
                 begin
                     score <= x45;
-                    led[7] <= 1'b0;
-                    if(switches == led)
+                    led <= 16'b1011_0001_0100_0111 ;
+                    if( !(switches^led) )
                         next_state <= s46;
                     else
                         next_state <= s45;
@@ -611,8 +610,8 @@ module catch_the_light(
                 s46:
                 begin
                     score <= x46;
-                    led[9] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b1011_0011_0100_0111 ;
+                    if( !(switches^led) )
                         next_state <= s47;
                     else
                         next_state <= s46;
@@ -621,8 +620,8 @@ module catch_the_light(
                 s47:
                 begin
                     score <= x47;
-                    led[11] <= 1'b1;
-                    if(switches == led)
+                    led <= 16'b1011_1011_0100_0111 ;
+                    if( !(switches^led) )
                         next_state <= s48;
                     else
                         next_state <= s47;
@@ -631,8 +630,8 @@ module catch_the_light(
                 s48:
                 begin
                     score <= x48;
-                    led[13] <= 1'b0;
-                    if(switches == led)
+                    led <= 16'b1001_1011_0100_0111 ;
+                    if( !(switches^led) )
                         next_state <= s49;
                     else
                         next_state <= s48;
@@ -641,8 +640,8 @@ module catch_the_light(
                 s49:
                 begin
                     score <= x49;
-                    led[6] <= 1'b0;
-                    if(switches == led)
+                    led <= 16'b1001_1011_0000_0111 ;
+                    if( !(switches^led) )
                         next_state <= s50;
                     else
                         next_state <= s49;
@@ -655,6 +654,8 @@ module catch_the_light(
 
                 end
             endcase
+
+
 
     end
 
