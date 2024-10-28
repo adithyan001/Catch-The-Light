@@ -59,6 +59,6 @@ A Verilog code was developed for the Catch the Light game. The code was synthesi
 
 The following video demonstrates the gameplay and overall functionality of the project.
 
->>>>>video<<<<<<<
+https://drive.google.com/file/d/1_hbU_SiXGTILdZ2aFN1rXlEMsnutbPP7/view?usp=drive_link
 
 The game is functioning perfectly as planned, demonstrating the successful implementation of the design.
